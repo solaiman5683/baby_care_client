@@ -1,26 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Products = () => {
+const Products = ({ product }) => {
 	return (
 		<div className='col'>
 			<div
 				className='card h-100 border-0 shadow overflow-hidden'
 				style={{ borderRadius: '20px' }}>
-				<img
-					src='https://m.media-amazon.com/images/I/61AFLagz9XL._SX466_.jpg'
-					className='card-img-top'
-					alt='...'
-				/>
+				<Link
+					className='text-dark text-decoration-none'
+					to={`/products/${product._id}`}>
+					<img src={product.image} className='card-img-top' alt='...' />
+				</Link>
+
 				<div className='card-body'>
 					<h5 className='card-title'>
 						<Link className='text-dark text-decoration-none' to='/'>
-							Cetaphil Baby Wash & Shampoo with Organic Calendula
+							{product.name}
 						</Link>
 					</h5>
 				</div>
 				<div className='card-footer d-flex'>
-					<p className='my-2 mb-0 p-2'>Price: $50</p>
+					<p className='my-2 mb-0 p-2'>Price: ৳{product.price}</p>
 					<p className='ms-auto my-2  p-2'>
 						<Link
 							to='/'

@@ -151,7 +151,6 @@ const useFirebase = () => {
 		}
 	}, [user]);
 
-	console.log(isAdmin);
 	return {
 		user,
 		isAdmin,
