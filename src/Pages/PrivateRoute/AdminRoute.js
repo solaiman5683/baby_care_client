@@ -4,9 +4,9 @@ import { Spinner } from 'reactstrap';
 import { useAuth } from '../../Contexts/AuthContext';
 
 const AdminRoute = ({ children, ...rest }) => {
-	const { user, admin, loading } = useAuth();
-
-	if (loading) {
+	const { user, isAdmin, loading } = useAuth();
+	console.log(isAdmin);
+	if (loading && isAdmin) {
 		return (
 			<div className='vh-100 d-flex justify-content-center align-items-center'>
 				<Spinner
@@ -24,12 +24,12 @@ const AdminRoute = ({ children, ...rest }) => {
 		<Route
 			{...rest}
 			render={({ location }) =>
-				user.email && admin ? (
+				user.email && isAdmin ? (
 					children
 				) : (
 					<Redirect
 						to={{
-							pathname: '/',
+							pathname: '/dashboard',
 							state: { from: location },
 						}}
 					/>

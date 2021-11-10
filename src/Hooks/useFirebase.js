@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import firebaseConfig from '../Firebase/Firebase.config';
 import {
 	getAuth,
@@ -11,12 +12,12 @@ import {
 	signOut,
 	deleteUser,
 } from 'firebase/auth';
-import axios from 'axios';
 
 firebaseConfig();
 const useFirebase = () => {
 	const auth = getAuth();
 	const [user, setUser] = useState();
+	const [isAdmin, setIsAdmin] = useState(false);
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState(true);
 
@@ -32,10 +33,7 @@ const useFirebase = () => {
 				};
 				axios
 					.put('https://agile-beyond-99774.herokuapp.com/users', userInfo)
-					.then(res => {
-						console.log(res);
-						res.data && alert('User Created Successfully');
-					});
+					.then(res => {});
 				const redirectUrl = location?.state?.from?.pathname
 					? location.state.from.pathname
 					: '/';
@@ -93,10 +91,7 @@ const useFirebase = () => {
 				};
 				axios
 					.put('https://agile-beyond-99774.herokuapp.com/users', userInfo)
-					.then(res => {
-						console.log(res);
-						res.data && alert('User Created Successfully');
-					});
+					.then(res => {});
 				const redirectUrl = location?.state?.from?.pathname
 					? location.state.from.pathname
 					: '/';
@@ -142,8 +137,24 @@ const useFirebase = () => {
 			});
 	};
 
+	useEffect(() => {
+		if (user?.email) {
+			axios(
+				`https://agile-beyond-99774.herokuapp.com/users/${user?.email}`
+			).then(response => {
+				if (response?.data.role === 'admin') {
+					setIsAdmin(true);
+				} else {
+					setIsAdmin(false);
+				}
+			});
+		}
+	}, [user]);
+
+	console.log(isAdmin);
 	return {
 		user,
+		isAdmin,
 		error,
 		googleLogin,
 		register,

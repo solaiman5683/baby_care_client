@@ -1,11 +1,14 @@
 import React from 'react';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { useAuth } from '../../Contexts/AuthContext';
+import AdminRoute from '../PrivateRoute/AdminRoute';
 import AddProducts from './AddProducts';
 import AllUsers from './AllUsers';
 import DashboardHome from './DashboardHome';
 import MyOrders from './MyOrders';
 
 const Dashboard = () => {
+	const { isAdmin } = useAuth();
 	const { path, url } = useRouteMatch();
 	return (
 		<div>
@@ -25,18 +28,22 @@ const Dashboard = () => {
 						to={`${url}/myOrders`}>
 						My Orders
 					</NavLink>
-					<NavLink
-						className='btn btn-info w-100 shadow-0'
-						activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
-						to={`${url}/addProducts`}>
-						Add Products
-					</NavLink>
-					<NavLink
-						className='btn btn-info w-100 shadow-0'
-						activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
-						to={`${url}/allUsers`}>
-						Users
-					</NavLink>
+					{isAdmin && (
+						<>
+							<NavLink
+								className='btn btn-info w-100 shadow-0'
+								activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
+								to={`${url}/addProducts`}>
+								Add Products
+							</NavLink>
+							<NavLink
+								className='btn btn-info w-100 shadow-0'
+								activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
+								to={`${url}/allUsers`}>
+								Users
+							</NavLink>
+						</>
+					)}
 				</div>
 				<div className='col-md-10 p-5'>
 					<Switch>
@@ -46,12 +53,12 @@ const Dashboard = () => {
 						<Route exact path={`${path}/myOrders`}>
 							<MyOrders />
 						</Route>
-						<Route exact path={`${path}/addProducts`}>
+						<AdminRoute exact path={`${path}/addProducts`}>
 							<AddProducts />
-						</Route>
-						<Route exact path={`${path}/allUsers`}>
+						</AdminRoute>
+						<AdminRoute exact path={`${path}/allUsers`}>
 							<AllUsers />
-						</Route>
+						</AdminRoute>
 					</Switch>
 				</div>
 			</div>

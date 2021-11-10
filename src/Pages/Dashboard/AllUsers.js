@@ -9,14 +9,14 @@ const AllUsers = () => {
 
 	useEffect(() => {
 		axios('https://agile-beyond-99774.herokuapp.com/users').then(response =>
-			setUsers(response.data)
+			setUsers(response?.data)
 		);
 	}, [user]);
 	const handleAdmin = email => {
 		axios
 			.put('https://agile-beyond-99774.herokuapp.com/users/admin', { email })
 			.then(response => {
-				if (response.data.acknowledged) {
+				if (response?.data.acknowledged) {
 					alert('User Updated Successfully');
 				}
 			});
@@ -29,14 +29,12 @@ const AllUsers = () => {
 			axios
 				.delete(`https://agile-beyond-99774.herokuapp.com/users/${id}`)
 				.then(response => {
-					console.log(response.data);
-					if (response.data.acknowledged) {
+					if (response?.data.acknowledged) {
 						removeUser();
 					}
 				});
 		}
 	};
-	console.log(users);
 	return (
 		<div>
 			<Table hover responsive size='sm'>
