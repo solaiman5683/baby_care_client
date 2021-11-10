@@ -1,0 +1,9 @@
+p {
+	margin: 5px 0 !important;
+}
+a {
+	text-decoration: none !important;
+}
+.pointer {
+	cursor: pointer;
+}

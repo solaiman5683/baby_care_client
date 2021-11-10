@@ -6,6 +6,7 @@ import Login from './Pages/Login/Login';
 import Navigation from './Components/Navigation';
 import AuthProvider from './Contexts/AuthContext';
 import Signup from './Pages/Signup/Signup';
+import Footer from './Components/Footer';
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 						<Signup />
 					</Route>
 				</Switch>
+				<Footer />
 			</BrowserRouter>
 		</AuthProvider>
 	);
