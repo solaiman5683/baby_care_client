@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
 	Collapse,
 	DropdownItem,
@@ -45,9 +45,17 @@ const Navigation = () => {
 								<DropdownToggle nav>{user?.displayName}</DropdownToggle>
 								<DropdownMenu
 									end
-									className='border-0 shadow py-0 rounded overflow-hidden'>
-									<DropdownItem>Option 1</DropdownItem>
-									<DropdownItem>Option 2</DropdownItem>
+									className='border-0 shadow py-0 rounded overflow-hidden text-center'>
+									<DropdownItem>
+										<Link className='text-dark' to='/dashboard'>
+											Dashboard
+										</Link>
+									</DropdownItem>
+									<DropdownItem>
+										<Link className='text-dark' to='/dashboard'>
+											My Orders
+										</Link>
+									</DropdownItem>
 									<DropdownItem
 										className='text-center mt-2 mb-0 bg-danger text-light'
 										onClick={logout}>

@@ -5,7 +5,7 @@ import { useAuth } from '../Contexts/AuthContext';
 const Footer = () => {
 	const { user, logout } = useAuth();
 	return (
-		<div className='mt-4 bg-dark pt-5 pb-3 text-light'>
+		<div className='bg-dark pt-5 pb-3 text-light'>
 			<div className='container '>
 				<div className='row'>
 					<div className='col-md-3 text-center '>

@@ -7,6 +7,7 @@ import Navigation from './Components/Navigation';
 import AuthProvider from './Contexts/AuthContext';
 import Signup from './Pages/Signup/Signup';
 import Footer from './Components/Footer';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
 	return (
@@ -25,6 +26,9 @@ function App() {
 					</Route>
 					<Route path='/signup'>
 						<Signup />
+					</Route>
+					<Route path='/dashboard'>
+						<Dashboard />
 					</Route>
 				</Switch>
 				<Footer />
