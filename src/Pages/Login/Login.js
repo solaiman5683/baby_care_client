@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import { useAuth } from '../../Contexts/AuthContext';
 
 const Login = () => {
 	const { googleLogin, login } = useAuth();
+	const location = useLocation();
+	const history = useHistory();
 	const handleSubmit = e => {
 		e.preventDefault();
-		login(e.target.email.value, e.target.password.value);
+		login(e.target.email.value, e.target.password.value, history, location);
 	};
 
 	return (
@@ -40,7 +42,9 @@ const Login = () => {
 				</Form>
 				<hr />
 				<p className='text-center '>
-					<button className='btn shadow-sm rounded-pill' onClick={googleLogin}>
+					<button
+						className='btn shadow-sm rounded-pill'
+						onClick={() => googleLogin(history, location)}>
 						Continue with Google
 					</button>
 				</p>

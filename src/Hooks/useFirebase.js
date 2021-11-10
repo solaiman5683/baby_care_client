@@ -9,6 +9,7 @@ import {
 	updateProfile,
 	onAuthStateChanged,
 	signOut,
+	deleteUser,
 } from 'firebase/auth';
 import axios from 'axios';
 
@@ -17,23 +18,41 @@ const useFirebase = () => {
 	const auth = getAuth();
 	const [user, setUser] = useState();
 	const [error, setError] = useState();
+	const [loading, setLoading] = useState(true);
 
 	const googleProvider = new GoogleAuthProvider();
-	const googleLogin = () => {
+	const googleLogin = (history, location) => {
 		signInWithPopup(auth, googleProvider)
 			.then(res => {
 				setUser(res.user);
 				setError('');
+				const userInfo = {
+					email: res.user.email,
+					displayName: res.user.displayName,
+				};
+				axios
+					.put('https://agile-beyond-99774.herokuapp.com/users', userInfo)
+					.then(res => {
+						console.log(res);
+						res.data && alert('User Created Successfully');
+					});
+				const redirectUrl = location?.state?.from?.pathname
+					? location.state.from.pathname
+					: '/';
+				history.replace(redirectUrl);
 			})
 			.catch(error => {
 				// Handle Errors here.
 				const errorMessage = error.message;
 				setError(errorMessage);
 				// ...
+			})
+			.finally(() => {
+				setLoading(false);
 			});
 	};
 
-	const register = (name, email, password) => {
+	const register = (name, email, password, history, location) => {
 		createUserWithEmailAndPassword(auth, email, password)
 			.then(res => {
 				// Signed in
@@ -44,32 +63,52 @@ const useFirebase = () => {
 				setUser(user);
 				setError('');
 				axios
-					.post('https://agile-beyond-99774.herokuapp.com/users', user)
+					.put('https://agile-beyond-99774.herokuapp.com/users', user)
 					.then(res => {
 						console.log(res);
 						res.data && alert('User Created Successfully');
 					});
+				history.replace('/');
 				// ...
 			})
 			.catch(error => {
 				const errorMessage = error.message;
 				setError(errorMessage);
 				// ..
+			})
+			.finally(() => {
+				setLoading(false);
 			});
 	};
 
-	const login = (email, password) => {
+	const login = (email, password, history, location) => {
 		signInWithEmailAndPassword(auth, email, password)
 			.then(res => {
 				// Signed in
-				const user = res.user;
-				setUser(user);
+				setUser(res.user);
 				setError('');
+				const userInfo = {
+					email: res.user.email,
+					displayName: res.user.displayName,
+				};
+				axios
+					.put('https://agile-beyond-99774.herokuapp.com/users', userInfo)
+					.then(res => {
+						console.log(res);
+						res.data && alert('User Created Successfully');
+					});
+				const redirectUrl = location?.state?.from?.pathname
+					? location.state.from.pathname
+					: '/';
+				history.replace(redirectUrl);
 				// ...
 			})
 			.catch(error => {
 				const errorMessage = error.message;
 				setError(errorMessage);
+			})
+			.finally(() => {
+				setLoading(false);
 			});
 	};
 
@@ -77,7 +116,9 @@ const useFirebase = () => {
 		const unsubscribe = onAuthStateChanged(auth, user => {
 			if (user) {
 				setUser(user);
+				setLoading(false);
 			} else {
+				setLoading(false);
 			}
 		});
 		return unsubscribe;
@@ -90,9 +131,27 @@ const useFirebase = () => {
 			setUser(null);
 		});
 	};
+	const removeUser = () => {
+		deleteUser(auth.currentUser)
+			.then(() => {
+				setUser(null);
+				alert('Delete user successful');
+			})
+			.catch(error => {
+				alert(error.message);
+			});
+	};
 
-	console.log(user);
-	return { user, error, googleLogin, register, login, logout };
+	return {
+		user,
+		error,
+		googleLogin,
+		register,
+		login,
+		logout,
+		loading,
+		removeUser,
+	};
 };
 
 export default useFirebase;

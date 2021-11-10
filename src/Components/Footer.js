@@ -21,10 +21,14 @@ const Footer = () => {
 						<h4>My Account</h4>
 
 						<p>
-							<Link className='text-light text-muted'>{'>'} Dashboard</Link>
+							<Link to='/dashboard' className='text-light text-muted'>
+								{'>'} Dashboard
+							</Link>
 						</p>
 						<p>
-							<Link className='text-light text-muted'>{'>'} My Orders</Link>
+							<Link to='/dashboard/myOrders' className='text-light text-muted'>
+								{'>'} My Orders
+							</Link>
 						</p>
 						{user?.displayName || user?.email ? (
 							<p className='text-light text-muted pointer' onClick={logout}>
@@ -33,10 +37,14 @@ const Footer = () => {
 						) : (
 							<>
 								<p>
-									<Link className='text-light text-muted'>{'>'} Login</Link>
+									<Link to='/login' className='text-light text-muted'>
+										{'>'} Login
+									</Link>
 								</p>
 								<p>
-									<Link className='text-light text-muted'>{'>'} Register</Link>
+									<Link to='/signup' className='text-light text-muted'>
+										{'>'} Register
+									</Link>
 								</p>
 							</>
 						)}
@@ -63,15 +71,15 @@ const Footer = () => {
 					</div>
 					<div className='col-md-6 d-flex justify-content-end'>
 						<a href='http://www.facebook.com' className='text-muted p-2 m-0'>
-							<i class='fab fa-facebook-square'></i>
+							<i className='fab fa-facebook-square'></i>
 						</a>
 						<a href='http://www.facebook.com' className='text-muted p-2 m-0'>
-							<i class='fab fa-twitter'></i>
+							<i className='fab fa-twitter'></i>
 						</a>
 						<a
 							href='mailto:solaiman.sh6@gmail.com'
 							className='text-muted p-2 m-0'>
-							<i class='fad fa-envelope-open-text'></i>
+							<i className='fad fa-envelope-open-text'></i>
 						</a>
 					</div>
 				</div>

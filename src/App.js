@@ -8,6 +8,7 @@ import AuthProvider from './Contexts/AuthContext';
 import Signup from './Pages/Signup/Signup';
 import Footer from './Components/Footer';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 
 function App() {
 	return (
@@ -27,9 +28,9 @@ function App() {
 					<Route path='/signup'>
 						<Signup />
 					</Route>
-					<Route path='/dashboard'>
+					<PrivateRoute path='/dashboard'>
 						<Dashboard />
-					</Route>
+					</PrivateRoute>
 				</Switch>
 				<Footer />
 			</BrowserRouter>

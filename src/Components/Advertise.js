@@ -25,7 +25,7 @@ const Advertise = () => {
 							child care provider in town, all our products are of international
 							standard.
 						</p>
-						<Link class='btn btn-primary' to='/'>
+						<Link className='btn btn-primary' to='/'>
 							Visit Our Shop Now {' >>'}
 						</Link>
 					</div>

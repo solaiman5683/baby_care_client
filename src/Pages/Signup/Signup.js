@@ -1,16 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Alert, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import { useAuth } from '../../Contexts/AuthContext';
 
 const Signup = () => {
 	const { googleLogin, register, error } = useAuth();
+	const location = useLocation();
+	const history = useHistory();
 	const handleSubmit = e => {
 		e.preventDefault();
 		register(
 			e.target.fullName.value,
 			e.target.email.value,
-			e.target.password.value
+			e.target.password.value,
+			history,
+			location
 		);
 		e.target.reset();
 	};
@@ -62,7 +66,7 @@ const Signup = () => {
 					<p className='text-center '>
 						<button
 							className='btn shadow-sm rounded-pill'
-							onClick={googleLogin}>
+							onClick={() => googleLogin(history, location)}>
 							Continue with Google
 						</button>
 					</p>

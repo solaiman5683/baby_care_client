@@ -10,7 +10,7 @@ const Dashboard = () => {
 	return (
 		<div>
 			<div className='row'>
-				<div className='col-md-2 vh-100 bg-info'>
+				<div className='col-md-2 h-full p-4 bg-info'>
 					<NavLink
 						exact
 						className='btn btn-info w-100 shadow-0'
@@ -35,10 +35,10 @@ const Dashboard = () => {
 						className='btn btn-info w-100 shadow-0'
 						activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
 						to={`${url}/allUsers`}>
-						Make Admin
+						Users
 					</NavLink>
 				</div>
-				<div className='col-md-10'>
+				<div className='col-md-10 p-5'>
 					<Switch>
 						<Route exact path={path}>
 							<DashboardHome />
