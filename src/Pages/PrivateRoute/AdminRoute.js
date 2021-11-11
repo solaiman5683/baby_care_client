@@ -5,7 +5,6 @@ import { useAuth } from '../../Contexts/AuthContext';
 
 const AdminRoute = ({ children, ...rest }) => {
 	const { user, isAdmin, loading } = useAuth();
-	console.log(isAdmin);
 	if (loading && isAdmin) {
 		return (
 			<div className='vh-100 d-flex justify-content-center align-items-center'>
