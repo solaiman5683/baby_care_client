@@ -5,7 +5,7 @@ import { useAuth } from '../../Contexts/AuthContext';
 
 const AllUsers = () => {
 	const [users, setUsers] = useState();
-	const { user, removeUser } = useAuth();
+	const { user } = useAuth();
 
 	useEffect(() => {
 		axios('https://agile-beyond-99774.herokuapp.com/users').then(response =>
@@ -30,7 +30,8 @@ const AllUsers = () => {
 				.delete(`https://agile-beyond-99774.herokuapp.com/users/${id}`)
 				.then(response => {
 					if (response?.data.acknowledged) {
-						removeUser();
+						const deleted = users.filter(user => user._id !== id);
+						setUsers(deleted);
 					}
 				});
 		}

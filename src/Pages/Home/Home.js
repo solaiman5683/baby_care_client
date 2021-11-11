@@ -4,6 +4,7 @@ import Advertise from '../../Components/Advertise';
 import Advice from '../../Components/Advice';
 import Header from '../../Components/Header';
 import Newsletter from '../../Components/Newsletter';
+import Reviews from '../../Components/Reviews';
 import Shop from '../../Components/Shop';
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
 					Explore more Products{' >>'}
 				</Link>
 			</p>
+			<Reviews />
 			<Newsletter />
 		</div>
 	);

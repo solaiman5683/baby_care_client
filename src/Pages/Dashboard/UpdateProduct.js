@@ -21,7 +21,7 @@ const UpdateProduct = () => {
 				productInfo
 			)
 			.then(response => {
-				if (response.data) {
+				if (response?.data) {
 					alert('Product Successfully Updated');
 					history.replace('/dashboard/manage-products');
 				}
@@ -33,7 +33,7 @@ const UpdateProduct = () => {
 	useEffect(() => {
 		axios(`https://agile-beyond-99774.herokuapp.com/products/${id}`).then(
 			response => {
-				setProduct(response.data);
+				setProduct(response?.data);
 			}
 		);
 	}, [id]);

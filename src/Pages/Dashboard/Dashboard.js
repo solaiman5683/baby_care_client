@@ -1,12 +1,15 @@
 import React from 'react';
-import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { NavLink, useRouteMatch, Switch } from 'react-router-dom';
 import { useAuth } from '../../Contexts/AuthContext';
 import AdminRoute from '../PrivateRoute/AdminRoute';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import AddProducts from './AddProducts';
 import AllUsers from './AllUsers';
 import DashboardHome from './DashboardHome';
 import ManageProducts from './ManageProducts';
 import MyOrders from './MyOrders';
+import Payment from './Payment';
+import Review from './Review';
 import UpdateProduct from './UpdateProduct';
 
 const Dashboard = () => {
@@ -29,6 +32,12 @@ const Dashboard = () => {
 						activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
 						to={`${url}/myOrders`}>
 						My Orders
+					</NavLink>
+					<NavLink
+						className='btn btn-info w-100 shadow-0'
+						activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
+						to={`${url}/review`}>
+						Review
 					</NavLink>
 					{isAdmin && (
 						<>
@@ -55,12 +64,18 @@ const Dashboard = () => {
 				</div>
 				<div className='col-md-10 p-5'>
 					<Switch>
-						<Route exact path={path}>
+						<PrivateRoute exact path={path}>
 							<DashboardHome />
-						</Route>
-						<Route exact path={`${path}/myOrders`}>
+						</PrivateRoute>
+						<PrivateRoute exact path={`${path}/myOrders`}>
 							<MyOrders />
-						</Route>
+						</PrivateRoute>
+						<PrivateRoute exact path={`${path}/pay`}>
+							<Payment />
+						</PrivateRoute>
+						<PrivateRoute exact path={`${path}/review`}>
+							<Review />
+						</PrivateRoute>
 						<AdminRoute exact path={`${path}/addProducts`}>
 							<AddProducts />
 						</AdminRoute>

@@ -15,13 +15,16 @@ const ManageProducts = () => {
 	}, [user]);
 	const handleDelete = id => {
 		const checked = window.confirm(
-			'Are you sure you want to delete this user?'
+			'Are you sure you want to delete this Product?'
 		);
 		if (checked) {
 			axios
-				.delete(`https://agile-beyond-99774.herokuapp.com/users/${id}`)
+				.delete(`https://agile-beyond-99774.herokuapp.com/products/${id}`)
 				.then(response => {
 					if (response?.data.acknowledged) {
+						alert('Product Successfully Deleted');
+						const deleted = products.filter(product => product._id !== id);
+						setProducts(deleted);
 					}
 				});
 		}

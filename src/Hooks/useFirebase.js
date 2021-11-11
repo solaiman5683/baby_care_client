@@ -10,7 +10,6 @@ import {
 	updateProfile,
 	onAuthStateChanged,
 	signOut,
-	deleteUser,
 } from 'firebase/auth';
 
 firebaseConfig();
@@ -126,23 +125,13 @@ const useFirebase = () => {
 			setUser(null);
 		});
 	};
-	const removeUser = () => {
-		deleteUser(auth.currentUser)
-			.then(() => {
-				setUser(null);
-				alert('Delete user successful');
-			})
-			.catch(error => {
-				alert(error.message);
-			});
-	};
 
 	useEffect(() => {
 		if (user?.email) {
 			axios(
 				`https://agile-beyond-99774.herokuapp.com/users/${user?.email}`
 			).then(response => {
-				if (response?.data.role === 'admin') {
+				if (response?.data?.role === 'admin') {
 					setIsAdmin(true);
 				} else {
 					setIsAdmin(false);
@@ -160,7 +149,6 @@ const useFirebase = () => {
 		login,
 		logout,
 		loading,
-		removeUser,
 	};
 };
 

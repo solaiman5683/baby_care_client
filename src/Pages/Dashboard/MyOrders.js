@@ -28,6 +28,8 @@ const ManageProducts = () => {
 				.then(response => {
 					if (response?.data.acknowledged) {
 						alert('Item Deleted Success');
+						const order = orders.filter(od => od._id !== id);
+						setOrders(order);
 					}
 				});
 		}

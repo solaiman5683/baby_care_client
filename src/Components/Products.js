@@ -32,7 +32,7 @@ const Products = ({ product }) => {
 		axios
 			.post('https://agile-beyond-99774.herokuapp.com/orders', orderInfo)
 			.then(response => {
-				if (response.data) {
+				if (response?.data) {
 					alert('Your order has been received ');
 					setIsOpen(false);
 				}

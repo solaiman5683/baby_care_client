@@ -14,7 +14,7 @@ const AddProducts = () => {
 		axios
 			.post('https://agile-beyond-99774.herokuapp.com/products', products)
 			.then(response => {
-				if (response.data) {
+				if (response?.data) {
 					alert('Product Successfully Added');
 					e.target.reset();
 				}

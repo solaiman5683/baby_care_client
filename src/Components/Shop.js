@@ -9,7 +9,7 @@ const Shop = ({ limit }) => {
 			`https://agile-beyond-99774.herokuapp.com/products?${
 				limit && `limit=${limit}`
 			}`
-		).then(response => setProducts(response.data));
+		).then(response => setProducts(response?.data));
 	}, [limit]);
 	return (
 		<div className='py-5 container'>
