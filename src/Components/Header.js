@@ -13,11 +13,15 @@ const Header = () => {
 			}}
 			className='d-flex justify-content-center align-items-center text-light'>
 			<div className='text-center'>
-				<h1>How to Take Care of Newborn Baby</h1>
-				<p>We are here for your baby's amazing development </p>
+				<h1>Take Care of your Newborn Baby</h1>
+				<p>
+					We are here for your baby's amazing development. We are providing you
+					a very heigh quantity products for your baby.{' '}
+				</p>
 				<p className='py-3'>
-					<Link to='/shop' className='btn btn-primary px-5'>
-						Explore now {' >>'}
+					<Link to='/shop' className='btn btn-primary px-5 py-3 rounded-pill'>
+						Explore now
+						<i class='fad fa-arrow-right ps-2'></i>
 					</Link>
 				</p>
 			</div>

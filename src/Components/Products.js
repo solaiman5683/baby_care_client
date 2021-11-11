@@ -28,7 +28,10 @@ const Products = ({ product }) => {
 			paid: false,
 			user: user.uid,
 		};
-		console.log(orderInfo);
+		if (e.target.quantity.value < 1) {
+			alert('Please select a quantity greater than or equal to 1');
+			return;
+		}
 		axios
 			.post('https://agile-beyond-99774.herokuapp.com/orders', orderInfo)
 			.then(response => {
@@ -55,6 +58,7 @@ const Products = ({ product }) => {
 							{product.name}
 						</Link>
 					</h5>
+					<p className='text-muted'>{product.description.slice(0, 200)} ...</p>
 				</div>
 				<div className='card-footer d-flex'>
 					<p className='my-2 mb-0 p-2'>Price: ৳{product.price}</p>
@@ -85,10 +89,18 @@ const Products = ({ product }) => {
 									toggle={() => {
 										setIsOpen(prev => !prev);
 									}}>
-									{product.name}
+									Order Now
 								</ModalHeader>
 								<ModalBody>
 									<Form onSubmit={handleSubmit}>
+										<FormGroup>
+											<Input
+												disabled
+												defaultValue={product.name}
+												type='text'
+												className='form-control p-3 text-center'
+											/>
+										</FormGroup>
 										<FormGroup>
 											<Input
 												required

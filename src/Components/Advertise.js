@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Advertise = () => {
 	return (
-		<div className='my-5 '>
+		<div className='mb-5 '>
 			<img
 				src='https://monnampo.sirv.com/Images/Assignment12/Bcare-bg-S6JFNQ.jpg'
 				alt=''
@@ -25,7 +25,7 @@ const Advertise = () => {
 							child care provider in town, all our products are of international
 							standard.
 						</p>
-						<Link className='btn btn-primary' to='/'>
+						<Link className='btn btn-primary px-4 py-3 rounded-pill' to='/'>
 							Visit Our Shop Now {' >>'}
 						</Link>
 					</div>

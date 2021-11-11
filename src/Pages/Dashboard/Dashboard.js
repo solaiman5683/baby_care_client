@@ -6,6 +6,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import AddProducts from './AddProducts';
 import AllUsers from './AllUsers';
 import DashboardHome from './DashboardHome';
+import ManageOrders from './ManageOrders';
 import ManageProducts from './ManageProducts';
 import MyOrders from './MyOrders';
 import Payment from './Payment';
@@ -56,6 +57,12 @@ const Dashboard = () => {
 							<NavLink
 								className='btn btn-info w-100 shadow-0'
 								activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
+								to={`${url}/manage-orders`}>
+								Manage Orders
+							</NavLink>
+							<NavLink
+								className='btn btn-info w-100 shadow-0'
+								activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
 								to={`${url}/allUsers`}>
 								Users
 							</NavLink>
@@ -81,6 +88,9 @@ const Dashboard = () => {
 						</AdminRoute>
 						<AdminRoute exact path={`${path}/manage-products`}>
 							<ManageProducts />
+						</AdminRoute>
+						<AdminRoute exact path={`${path}/manage-orders`}>
+							<ManageOrders />
 						</AdminRoute>
 						<AdminRoute exact path={`${path}/update-product/:id`}>
 							<UpdateProduct />

@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import { useAuth } from '../../Contexts/AuthContext';
 
-const MyOrders = () => {
+const ManageOrders = () => {
 	const [orders, setOrders] = useState();
 	const [products, setProducts] = useState();
 	const { user } = useAuth();
@@ -13,8 +12,8 @@ const MyOrders = () => {
 		axios('https://agile-beyond-99774.herokuapp.com/products').then(response =>
 			setProducts(response?.data)
 		);
-		axios(`https://agile-beyond-99774.herokuapp.com/orders/${user.uid}`).then(
-			response => setOrders(response?.data)
+		axios(`https://agile-beyond-99774.herokuapp.com/orders`).then(response =>
+			setOrders(response?.data)
 		);
 	}, [user]);
 
@@ -41,6 +40,8 @@ const MyOrders = () => {
 					<tr>
 						<th>#</th>
 						<th>Name</th>
+						<th>Email</th>
+						<th>Product</th>
 						<th>Price</th>
 						<th>Quantity</th>
 						<th>Status</th>
@@ -53,22 +54,16 @@ const MyOrders = () => {
 						return (
 							<tr key={i}>
 								<th scope='row'>{i + 1}</th>
+								<td>{order?.name}</td>
+								<td>{order?.email}</td>
 								<td>{pd?.name}</td>
 								<td>৳ {pd?.price}</td>
 								<td>{order.quantity}</td>
-								<td>
-									{order.paid ? (
-										'Waiting For Delivery'
-									) : (
-										<Link className='btn btn-warning' to='/dashboard/pay'>
-											Pay Now
-										</Link>
-									)}
-								</td>
+								<td>{order.paid ? 'Waiting For Delivery' : 'Payment Due'}</td>
 								<td>
 									<button
 										className='btn btn-danger'
-										title='Cancel orders'
+										title='Reject orders'
 										onClick={() => handleDelete(order._id)}>
 										<i className='fad fa-trash'></i>
 									</button>
@@ -82,4 +77,4 @@ const MyOrders = () => {
 	);
 };
 
-export default MyOrders;
+export default ManageOrders;
