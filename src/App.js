@@ -10,6 +10,7 @@ import Footer from './Components/Footer';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import Shop from './Components/Shop';
+import Purchase from './Pages/Purchase/Purchase';
 
 function App() {
 	return (
@@ -23,7 +24,7 @@ function App() {
 					<Route path='/home'>
 						<Home />
 					</Route>
-					<Route path='/shop'>
+					<Route exact path='/shop'>
 						<Shop />
 					</Route>
 					<Route path='/login'>
@@ -32,6 +33,9 @@ function App() {
 					<Route path='/signup'>
 						<Signup />
 					</Route>
+					<PrivateRoute exact path='/products/:id'>
+						<Purchase />
+					</PrivateRoute>
 					<PrivateRoute path='/dashboard'>
 						<Dashboard />
 					</PrivateRoute>
