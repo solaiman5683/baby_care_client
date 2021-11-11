@@ -25,6 +25,7 @@ const Products = ({ product }) => {
 			phone: e.target.phone.value,
 			product: product._id,
 			quantity: e.target.quantity.value,
+			paid: false,
 			user: user.uid,
 		};
 		console.log(orderInfo);
