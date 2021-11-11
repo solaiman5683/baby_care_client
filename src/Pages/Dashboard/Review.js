@@ -33,7 +33,7 @@ const Review = () => {
 						className='form-control p-3 fs-5'
 					/>
 				</FormGroup>
-				<Button className='form-control p-3 bg-primary'>Add Product</Button>
+				<Button className='form-control p-3 bg-primary'>Add Review</Button>
 			</Form>
 		</div>
 	);

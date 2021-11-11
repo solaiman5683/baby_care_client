@@ -21,7 +21,11 @@ const Home = () => {
 					Explore more Products{' >>'}
 				</Link>
 			</p>
-			<Reviews />
+			<div className='container'>
+				<h2 className='text-center'>Our Customer Reviews</h2>
+				<hr />
+				<Reviews />
+			</div>
 			<Newsletter />
 		</div>
 	);
