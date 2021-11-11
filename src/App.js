@@ -9,6 +9,7 @@ import Signup from './Pages/Signup/Signup';
 import Footer from './Components/Footer';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import Shop from './Components/Shop';
 
 function App() {
 	return (
@@ -16,11 +17,14 @@ function App() {
 			<BrowserRouter>
 				<Navigation />
 				<Switch>
-					<Route path='/' exact>
+					<Route exact path='/'>
 						<Home />
 					</Route>
 					<Route path='/home'>
 						<Home />
+					</Route>
+					<Route path='/shop'>
+						<Shop />
 					</Route>
 					<Route path='/login'>
 						<Login />

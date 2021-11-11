@@ -3,9 +3,9 @@ import React from 'react';
 const Newsletter = () => {
 	return (
 		<div className='container rounded-pill bg-warning p-5 my-4'>
-			<div className='row justify-content-center align-items-center'>
+			<div className='row justify-content-center align-items-center '>
 				<div className='col-md-6 text-center'>
-					<h3>Newsletter</h3>
+					<h3 className=' fw-bold'>Newsletter</h3>
 					<p>Remember to stay in touch to get Season's offers and discounts!</p>
 				</div>
 				<form

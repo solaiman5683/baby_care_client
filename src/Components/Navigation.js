@@ -16,7 +16,7 @@ import { useAuth } from '../Contexts/AuthContext';
 const Navigation = () => {
 	const { user, logout } = useAuth();
 	return (
-		<div>
+		<div className='fs-5'>
 			<Navbar color='light' container='sm' expand='md' light>
 				<NavLink className='navbar-brand' to='/'>
 					<img
@@ -34,7 +34,7 @@ const Navigation = () => {
 							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink className='nav-link' to='/'>
+							<NavLink className='nav-link' to='/shop'>
 								Explore
 							</NavLink>
 						</NavItem>
