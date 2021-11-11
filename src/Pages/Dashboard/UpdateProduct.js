@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { Alert, Button, Form, FormGroup, Input } from 'reactstrap';
 
 const UpdateProduct = () => {
 	const { id } = useParams();
+	const history = useHistory();
 	const [product, setProduct] = useState();
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -22,6 +23,7 @@ const UpdateProduct = () => {
 			.then(response => {
 				if (response.data) {
 					alert('Product Successfully Updated');
+					history.replace('/dashboard/manage-products');
 				}
 			})
 			.catch(e => {

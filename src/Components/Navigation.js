@@ -52,7 +52,7 @@ const Navigation = () => {
 										</Link>
 									</DropdownItem>
 									<DropdownItem>
-										<Link className='text-dark' to='/dashboard'>
+										<Link className='text-dark' to='/dashboard/myOrders'>
 											My Orders
 										</Link>
 									</DropdownItem>
