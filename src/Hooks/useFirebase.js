@@ -123,6 +123,7 @@ const useFirebase = () => {
 			// Sign-out successful.
 			alert('Sign-out successful');
 			setUser(null);
+			setIsAdmin(false);
 		});
 	};
 

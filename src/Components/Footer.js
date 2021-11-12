@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../Contexts/AuthContext';
 
 const Footer = () => {
-	const { user, logout } = useAuth();
+	const { user, logout, isAdmin } = useAuth();
 	return (
 		<div className='bg-dark pt-5 pb-3 text-light'>
 			<div className='container '>
@@ -20,16 +20,58 @@ const Footer = () => {
 					<div className='col-md-3'>
 						<h4>My Account</h4>
 
-						<p>
-							<Link to='/dashboard' className='text-light text-muted'>
-								{'>'} Dashboard
-							</Link>
-						</p>
-						<p>
-							<Link to='/dashboard/myOrders' className='text-light text-muted'>
-								{'>'} My Orders
-							</Link>
-						</p>
+						{!isAdmin ? (
+							user?.displayName || user?.email ? (
+								<>
+									<p>
+										<Link to='/dashboard' className='text-light text-muted'>
+											{'>'} Dashboard
+										</Link>
+									</p>
+									<p>
+										<Link
+											to='/dashboard/myOrders'
+											className='text-light text-muted'>
+											{'>'} My Orders
+										</Link>
+									</p>
+								</>
+							) : (
+								''
+							)
+						) : (
+							<>
+								<p>
+									<Link
+										to='/dashboard/addProducts'
+										className='text-light text-muted'>
+										{'>'} Add Product
+									</Link>
+								</p>
+								<p>
+									<Link
+										to='/dashboard/manage-products'
+										className='text-light text-muted'>
+										{'>'} Manage Products
+									</Link>
+								</p>
+								<p>
+									<Link
+										to='/dashboard/manage-orders'
+										className='text-light text-muted'>
+										{'>'} Manage Orders
+									</Link>
+								</p>
+								<p>
+									<Link
+										to='/dashboard/allUsers'
+										className='text-light text-muted'>
+										{'>'} Manage Users
+									</Link>
+								</p>
+							</>
+						)}
+
 						{user?.displayName || user?.email ? (
 							<p className='text-light text-muted pointer' onClick={logout}>
 								{'> '}Logout

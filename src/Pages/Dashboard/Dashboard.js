@@ -20,27 +20,30 @@ const Dashboard = () => {
 		<div>
 			<div className='row'>
 				<div className='col-md-2 h-full p-4 bg-info'>
-					<NavLink
-						exact
-						className='btn btn-info w-100 shadow-0'
-						activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
-						to={`${url}`}>
-						Dashboard
-					</NavLink>
+					{!isAdmin ? (
+						<>
+							<NavLink
+								exact
+								className='btn btn-info w-100 shadow-0'
+								activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
+								to={`${url}`}>
+								Dashboard
+							</NavLink>
 
-					<NavLink
-						className='btn btn-info w-100 shadow-0'
-						activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
-						to={`${url}/myOrders`}>
-						My Orders
-					</NavLink>
-					<NavLink
-						className='btn btn-info w-100 shadow-0'
-						activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
-						to={`${url}/review`}>
-						Review
-					</NavLink>
-					{isAdmin && (
+							<NavLink
+								className='btn btn-info w-100 shadow-0'
+								activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
+								to={`${url}/myOrders`}>
+								My Orders
+							</NavLink>
+							<NavLink
+								className='btn btn-info w-100 shadow-0'
+								activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
+								to={`${url}/review`}>
+								Review
+							</NavLink>
+						</>
+					) : (
 						<>
 							<NavLink
 								className='btn btn-info w-100 shadow-0'
@@ -64,7 +67,7 @@ const Dashboard = () => {
 								className='btn btn-info w-100 shadow-0'
 								activeClassName='bg-primary text-light px-5 py-2 rounded-pill'
 								to={`${url}/allUsers`}>
-								Users
+								Manage Users
 							</NavLink>
 						</>
 					)}
